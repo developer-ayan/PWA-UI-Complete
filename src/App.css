@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+/* calendar */
+
+
+.calendar {
+background-color: red;
+}
+
+/* fruit image  */
+
+.fruit-image {
+  width: 50px !important;
+  border: 1px solid red;
+  padding: 20px;
+}
