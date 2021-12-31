@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import '../index.css'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { signupUser } from '../store/reducers/actions/userAction'
+// import { signupUser } from '../store/reducers/actions/userAction'
 import TextField from '@mui/material/TextField';
+import { auth } from '../config/Firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 
 export default function SignUp() {
@@ -18,12 +20,26 @@ export default function SignUp() {
 
 
     let signup_user = () => {
-        let user = {
-            username,
-            email,
-            password
-        }
-        dispatch(signupUser(user))
+        // let user = {
+        //     username,
+        //     email,
+        //     password
+        // }
+        // dispatch(signupUser(user))
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in 
+          
+
+          alert('Your account hase been create')
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+        });
+
     }
 
 
@@ -39,7 +55,7 @@ export default function SignUp() {
 
                     <div className='logo-main'>
                         <div className='logo' >
-                            <i class="fas fa-shopping-bag"></i>
+                            <i className="fas fa-shopping-bag"></i>
                         </div>
                     </div>
 

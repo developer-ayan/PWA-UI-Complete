@@ -7,6 +7,9 @@ import store from "./store/reducers";
 import HomeScreen from "./screens/HomeScreen";
 import TodoScreen from "./screens/TodoScreen";
 import Blogs from './screens/Blogs'
+import SimpleBottomNavigation from "./screens/SimpleBottomNavigation";
+import TaskScreen from "./screens/TaskScreen";
+import SettingScreen from "./screens/SettingScreen";
 
 
 function App() {
@@ -14,9 +17,6 @@ function App() {
   return (
     <div>
       <Provider store={store}>
-
-
-
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
@@ -24,12 +24,9 @@ function App() {
           <Route path="/home" element={<HomeScreen />} />
           <Route path="/todos" element={<TodoScreen />} />
           <Route path="/blogs" element={<Blogs />} />
-
-
-
-
+          <Route path="/task" element={<TaskScreen />} />
+          <Route path="/settingscreen" element={<SettingScreen />} />
         </Routes>
-
       </Provider>
 
 

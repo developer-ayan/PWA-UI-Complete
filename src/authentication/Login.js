@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom'
 import { signinUser } from '../store/reducers/actions/userAction'
 import { useDispatch } from 'react-redux'
 import TextField from '@mui/material/TextField';
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../config/Firebase'
+import { collection, onSnapshot, addDoc } from 'firebase/firestore'
+import { db } from '../config/Firebase'
 
 export default function Login() {
 
@@ -12,14 +16,19 @@ export default function Login() {
     let [email, setEmail] = React.useState('')
     let [password, setPassword] = React.useState('')
 
+
+    const usersCollectionref = collection(db,'users')
     const signin = () => {
-        let user = {
-            email,
-            password
-        }
-        dispatch(signinUser(user))
-
-
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                console.log(userCredential)
+                return (
+                    alert('account has been signin')
+                )
+            })
+            .catch((error) => {
+                alert(error)
+            });
     }
 
     return (
@@ -34,7 +43,7 @@ export default function Login() {
 
                     <div className='logo-main'>
                         <div className='logo' >
-                            <i class="fas fa-shopping-bag"></i>
+                            <i className="fas fa-shopping-bag"></i>
                         </div>
                     </div>
 
@@ -86,7 +95,7 @@ export default function Login() {
                     {/* remember me */}
 
                     <div className='remember'>
-                        
+
                         <div>
                             <p>remember me</p>
                         </div>
